@@ -160,3 +160,15 @@ Just call your shortcut. In my case:
 ```
 dnsmasq_restart
 ```
+
+## How to revert back
+
+In case that you didn't want to use the script. (Because it clashes with your VPN, etc.) 
+Just turn off the docker container, like this
+
+```
+docker stop dnsmasq
+```
+
+Then restore your preferred DNS settings. In OSX environment, you go to 
+System Preferences > Network > Advanced > DNS, then input your DNS server.
