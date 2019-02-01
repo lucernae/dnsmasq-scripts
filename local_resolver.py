@@ -4,6 +4,7 @@
 import fileinput
 import re
 import netifaces as ni
+import subprocess
 import sys
 
 
@@ -15,6 +16,7 @@ def find_interface_address(ifname):
 
 
 def replace_resolver_entry(dnsmasq_conf_loc, resolver_loc, domain_name, addr):
+    """Add resolver entry to host resolver"""
 
     pattern = r"^address=/{domain}/(?P<addr>[\d.]+)$".format(
         domain=domain_name)
@@ -44,4 +46,7 @@ if __name__ == '__main__':
     domain_name = sys.argv[4]
 
     addr = find_interface_address(ifname)
+    # set mac dns to use dnsmasq
+    command = "networksetup -setdnsservers Wi-Fi {addr}".format(addr=addr)
+    subprocess.call(command.split(' '))
     replace_resolver_entry(dnsmasq_loc, resolver_loc, domain_name, addr)

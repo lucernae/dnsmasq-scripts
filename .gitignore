@@ -1,3 +1,6 @@
 dnsmasq.conf
 dnsmasq.conf.bak
 local_resolver.sh
+docker_dnsmasq.sh
+
+.idea
